@@ -1,33 +1,26 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-#  未命名.py
-#  
-#  Copyright 2013 ccdjh <ccdjh@WD>
-#  
-#  This program is free software; you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; either version 2 of the License, or
-#  (at your option) any later version.
-#  
-#  This program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#  
-#  You should have received a copy of the GNU General Public License
-#  along with this program; if not, write to the Free Software
-#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-#  MA 02110-1301, USA.
-#  
-#  
+# coding=utf-8
+import os
+import json
+import lxml
+import redis
+import tornado.web
 
+from helper import HelperHandler
+from config import KT
 
+class Main(HelperHandler):
+    def get(self):
+        pass
 
-def main():
-	
-	return 0
-
-if __name__ == '__main__':
-	main()
-
+class Weixin(HelperHandler):
+    def get(self):
+        template_values = {}
+        template_values['WX'] = '模板变量全部用大写'
+        self.render(os.path.join(os.path.dirname(__file__), 'template','weixin.html'),tpl=template_values)
+        
+        
+goWX = [
+    (r"/", Main),
+    (r"/wx", Weixin),
+]
