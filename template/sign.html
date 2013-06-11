@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="True" name="HandheldFriendly" />
+    <meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0; name='viewport'" />
+    <title>SignIn</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="alternate" type="application/atom+xml" href="/index.xml" />
+    <style type="text/css"><!-- 
+html {padding: 0px;margin: 0px;font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "STHeiti";}
+body {background-color: #B4D9F1;padding: 0px;margin: 0px;}
+a:link, a:visited, a:active {color: #336699;text-decoration: none;}
+a:hover {color:  #222;text-decoration: none;}
+label{font-size:12px;}
+.signin_Line{border-bottom: 1px solid #E2E2E2;font-size: 12px;line-height: 16px;padding: 10px;float:left;}
+#Main{width:320px;margin:30px auto;padding: 20px;-webkit-box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 3px;background-color: white;border: 1px solid #CCC;border-bottom-left-radius: 5px 5px;border-bottom-right-radius: 5px 5px;border-top-left-radius: 5px 5px;border-top-right-radius: 5px 5px;text-align: right;}
+#Signin_Password, #Signin_Name, #Signin_Confirm{-webkit-box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 3px;background-color: white;border: 1px solid #CCC;border-bottom-left-radius: 5px 5px;border-bottom-right-radius: 5px 5px;border-top-left-radius: 5px 5px;border-top-right-radius: 5px 5px;width:200px;}
+#Confirm{margin-top:28px;}
+#Version{width:300px;margin:30px auto;color:#aaa;font-size:8px;}
+    --></style>
+  </head>
+
+  <body>
+<div id="Main">
+  <div id="Sign_Logo">
+  </div>
+  <span class="signin_Line">登入.....</span>
+  <div id="Signin">
+    
+      <form action="/signin" method="post">
+        <label for="password">密码:</label>
+        <input type="password" name="password" value="" id="Signin_Password"><br/>
+        <input type="submit" value="登入" />
+        <input type="hidden" name="next" value="" />
+      </form>
+  </div>
+  <div> </div>
+</div>
+    <div id="Version"> </div>
+  </body>
+</html>

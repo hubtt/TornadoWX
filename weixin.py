@@ -14,6 +14,7 @@ class Main(HelperHandler):
         pass
 
 class Weixin(HelperHandler):
+    @tornado.web.authenticated
     def get(self):
         template_values = {}
         template_values['WX'] = '模板变量全部用大写'
