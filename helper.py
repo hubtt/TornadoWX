@@ -22,3 +22,7 @@ class HelperHandler(tornado.web.RequestHandler):
                 num = int(counter) + 1
                 kv.set(c, num)
                 return num
+
+    def helper_config(self,name,value):
+        pass
+        
