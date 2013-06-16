@@ -20,65 +20,22 @@
             </div>
         </div>
         <div id="ContentContent">
-            <div  class="cell item">发布平台>></div>
+            <div  class="cell item"><span class="style-label-personal pure-button ">{{ len(tpl["CONTACT_LIST"]) }}</span>发布平台>></div>
             <div class="cell item">
-                <form class="pure-form">
+                <form action="/create/contact" method="post" class="pure-form">
                 <fieldset>
-
-                    <div class="pure-u-1-5"><input class="pure-input-1" type="text" placeholder="关键词"></div>
-                    <div class="pure-u-3-5"><input class="pure-input-1" type="text" placeholder="内容"></div>
+                    <div class="pure-u-1-5"><input class="pure-input-1" type="text" name='contactName' placeholder="关键词-TornadoWx"></div>
+                    <div class="pure-u-3-5"><input class="pure-input-1" type="text" name='contactContent' placeholder="内容-(版本号0.1,可以运行在VPS SAE,BAE,GAE)"></div>
                     <button type="submit" class="pure-button pure-button-xsmall pure-button-secondary">提交</button>
                 </fieldset>
                 </form>
             </div>
+            {% for t in tpl["CONTACT_LIST"] %}
             <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
+                <div class="name">{{ t["name"] }}</div>
+                <div class="doc">{{ t["content"] }}</div>
             </div>
-            <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
-            </div>
-            <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
-            </div>
-            <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
-            </div>
-            <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
-            </div>
-            <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
-            </div>
-            <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
-            </div>
-            <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
-            </div>
-            <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
-            </div>
-            <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
-            </div>
-            <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
-            </div>
-            <div class="cell item blue-border">
-                <div class="name">广州香格里拉大酒店</div>
-                <div class="doc">位处广州国际会展中心附近，优越的地理位置为您探索这座历史名城提供一切出行便利。眺望窗外，动人的珠江景致和怡人的园林美景尽收眼底。</div>
-            </div>
+            {% end %} 
         </div>
         <div id="ContentFooter">
         </div>

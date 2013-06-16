@@ -8,13 +8,13 @@ import tornado.web
 from tornado.options import define, options
 from weixin import goWX
 from sign import goSign
+from interface import goInterface
 
-
-define("port", default=8888, help="run on the given port", type=int)
+define("port", default=8085, help="run on the given port", type=int)
 settings = {"static_path": os.path.join(os.path.dirname(__file__), "static"),"debug": True,"cookie_secret": "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=","login_url": "/signin"}
 goFavicon = [(r"/(favicon\.ico)", tornado.web.StaticFileHandler, dict(path=settings['static_path']))]
 
-go = goFavicon+goWX+goSign
+go = goFavicon+goWX+goSign+goInterface
 def main():
     tornado.options.parse_command_line()
     application = tornado.web.Application(go,**settings)

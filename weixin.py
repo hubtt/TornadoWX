@@ -21,15 +21,12 @@ class Weixin(HelperHandler):
     @tornado.web.authenticated
     def get(self):
         kv = redis.StrictRedis()
-        g = self.get_argument('g', 'all')
-        contact_list = []
-        
-        if g == 'all':
-            contact_list_all = kv.keys(KT['c']+'*')#如果没有，返回[]
-            for t in contact_list_all[0:30]:
-                c = kv.get(t)
-                c = json.loads(c)
-                contact_list.append(c)
+        contact_list =[]
+        contact_list_all = kv.keys(KT['c']+'*')#如果没有，返回[]
+        for t in contact_list_all[0:30]:
+            c = kv.get(t)
+            c = json.loads(c)
+            contact_list.append(c)
                 
         
         
@@ -45,8 +42,8 @@ class CreateContact(HelperHandler):
     @tornado.web.authenticated
     def post(self):
         group_name = str(self.get_argument("groupName","hot").encode("UTF-8"))
-        contact_name = str(self.get_argument("contactName",None).encode("UTF-8"))
-        contact_content = str(self.get_argument("contactContent",None).encode("UTF-8"))
+        contact_name = str(self.get_argument("contactName","TornadoWx").encode("UTF-8"))
+        contact_content = str(self.get_argument("contactContent","版本号0.1,可以运行在VPS SAE,BAE,GAE").encode("UTF-8"))
 
         kv = redis.StrictRedis()
         contact_key = str(KT['c']) + contact_name
