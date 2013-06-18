@@ -5,16 +5,20 @@ import json
 import urllib
 import hashlib
 
-import lxml.etree
 import redis
+import lxml.etree
+
 import tornado.web
+
 from random import choice
+
 from config import KT
+from config import WeixinToken
+from config import WeixinUrl
+from config import smdmy
 from helper import HelperHandler
 
-smdmy = ''' 你的关键词，我们的机器人会在一个工作日内更新。并且自动回复你  '''
 wxTpl = '''<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[%s]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>'''
-WeixinToken = '654321'
 
 
 class Talk():
@@ -63,7 +67,6 @@ class WXInterface(HelperHandler):
                 T_contact_list = T.talk(Content)
                 T_contact_list = json.loads(T_contact_list)
                 contact_list = T_contact_list
-                #contact_list = []
                 
                 if contact_list:
                     contact = choice(contact_list)
@@ -79,5 +82,5 @@ class WXInterface(HelperHandler):
         
 
 goInterface = [
-    (r"/1984", WXInterface),
+    (WeixinUrl, WXInterface),
 ]

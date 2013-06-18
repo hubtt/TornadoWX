@@ -9,10 +9,8 @@ import tornado.web
 
 from helper import HelperHandler
 from config import KT
-#>>> import hashlib
-#>>> hashlib.sha1('123456').hexdigest()
-#'7c4a8d09ca3762af61e59520943dc26494f8941b'
-SinaPassword = '7c4a8d09ca3762af61e59520943dc26494f8941b'
+from config import WXPassword
+
 
 class Signin(HelperHandler):
     def get(self):
@@ -22,9 +20,9 @@ class Signin(HelperHandler):
     def post(self):
         pw = self.get_argument("password")
         sha1 = hashlib.sha1(pw).hexdigest()
-        if (sha1 == SinaPassword):
-            SinaAuth = hashlib.sha1(SinaPassword + ':' + 'SinaSiteDomain').hexdigest()
-            self.set_secure_cookie("user", SinaAuth, expires_days=30)
+        if (sha1 == WXPassword):
+            WXAuth = hashlib.sha1(WXPassword + ':' + 'WXSiteDomain').hexdigest()
+            self.set_secure_cookie("user", WXAuth, expires_days=30)
             self.redirect('/wx')
         else:
             self.redirect('/signin')
