@@ -1,38 +1,46 @@
-<!--
-   未命名.html
-   
-   Copyright 2013 ccdjh <ccdjh@WD>
-   
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2 of the License, or
-   (at your option) any later version.
-   
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-   MA 02110-1301, USA.
-   
-   
--->
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>未命名</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta name="generator" content="Geany 1.22" />
+    <title>微信控制台</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 
 <body>
-	
+    <div id="Header"></div>
+    <div id="Content">
+        <div id="ContentHeader">
+            <div>
+                <a href='/wx' class='cls c'><span class="style-label-personal"></span>发布平台</a>
+                <a href='/settings' class='cls'><span class="style-label-work"></span>后台设置</a>
+                <a href='/wx' class='cls'><span class="style-label-travel"></span>使用说明</a>
+                <a href='/signout' class='signout'>退出</a>
+            </div>
+        </div>
+        <div id="ContentContent">
+            <div  class="cell item"><span class="style-label-personal pure-button ">{{ len(tpl["CONTACT_LIST"]) }}</span>发布平台>></div>
+            <div class="cell item">
+                <form action="/create/contact" method="post" class="pure-form">
+                <fieldset>
+                    <div class="pure-u-1-5"><input class="pure-input-1" type="text" name='contactName' placeholder="关键词-TornadoWx"></div>
+                    <div class="pure-u-3-5"><input class="pure-input-1" type="text" name='contactContent' placeholder="内容-(版本号0.1,可以运行在VPS SAE,BAE,GAE)"></div>
+                    <button type="submit" class="pure-button pure-button-xsmall pure-button-secondary">提交</button>
+                </fieldset>
+                </form>
+            </div>
+            {% for t in tpl["CONTACT_LIST"] %}
+            <div class="cell item blue-border">
+                <div class="name">{{ t["name"] }}</div>
+                <div class="doc">{{ t["content"] }}</div>
+            </div>
+            {% end %} 
+        </div>
+        <div id="ContentFooter">
+        </div>
+    </div>
+    <div id="Footer"></div>
 </body>
 
 </html>
