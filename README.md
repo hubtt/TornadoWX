@@ -44,17 +44,17 @@ TornadoWX 是用python的web框架tornadoWeb开发的，专门为微信公众帐
 >cd TornadoWX
 >python index.py
 
-## 配置文件
+## 配置文件,config.py是缺省的配置文件
 
-config.py是缺省的配置文件
-‘WXPassword’是登录密码
 
 1,‘WXPassword’是登录密码，配置自己的密码如下：
-	import hashlib
-	hashlib.sha1('123456').hexdigest()
-	'7c4a8d09ca3762af61e59520943dc26494f8941b'
+
+>import hashlib
+>hashlib.sha1('123456').hexdigest()
+>'7c4a8d09ca3762af61e59520943dc26494f8941b'
 
 2,填写到公众帐号的‘token’和‘url’,可以自行修改
+
 >WeixinToken = '654321'
 >WeixinUrl='''/1984'''
 
