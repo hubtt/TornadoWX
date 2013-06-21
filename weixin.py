@@ -16,15 +16,15 @@ class Main(HelperHandler):
         
         
 class Weixin(HelperHandler):
-    @tornado.web.authenticated	
+    @tornado.web.authenticated
     def get(self):
         #kv = redis.StrictRedis()
         kv = redis.KVClient()
         contact_list =[]
         wx = [i for i in kv.get_by_prefix(KT['c'])]
         for t in wx:
-			c = json.loads(t[1])
-			contact_list.append(c)
+            c = json.loads(t[1])
+            contact_list.append(c)
             
         template_values = {}
         template_values['WX'] = wx

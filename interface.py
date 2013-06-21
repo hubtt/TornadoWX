@@ -23,13 +23,13 @@ wxTpl = '''<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s
 
 class Talk():
     def talk(self,value):
-		kv = redis.KVClient()
-		contact_list = []
-		wx = [i for i in kv.get_by_prefix(KT['c']  + value.encode("UTF-8"))]
-		for t in wx:
-			c = json.loads(t[1])
-			contact_list.append(c)
-		return json.dumps(contact_list)
+        kv = redis.KVClient()
+        contact_list = []
+        wx = [i for i in kv.get_by_prefix(KT['c']  + value.encode("UTF-8"))]
+        for t in wx:
+            c = json.loads(t[1])
+            contact_list.append(c)
+        return json.dumps(contact_list)
 
 
 class WXInterface(HelperHandler):
