@@ -4,7 +4,7 @@ import os
 import hashlib
 import json
 import lxml
-import redis
+import sae.kvdb as redis
 import tornado.web
 
 from helper import HelperHandler

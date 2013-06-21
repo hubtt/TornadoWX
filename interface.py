@@ -5,7 +5,7 @@ import json
 import urllib
 import hashlib
 
-import redis
+import sae.kvdb as redis
 import lxml.etree
 
 import tornado.web
@@ -23,16 +23,13 @@ wxTpl = '''<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s
 
 class Talk():
     def talk(self,value):
-        kv = redis.StrictRedis()
-        contact_list = []
-        search = KT['c'] + "*"+ value.encode("UTF-8") + "*"
-        search_list_all = kv.keys(search)#如果没有，返回[]
-        if search_list_all:
-            for t in search_list_all:
-                c = kv.get(t)
-                c = json.loads(c)
-                contact_list.append(c)
-        return json.dumps(contact_list)
+		kv = redis.KVClient()
+		contact_list = []
+		wx = [i for i in kv.get_by_prefix(KT['c']  + value.encode("UTF-8"))]
+		for t in wx:
+			c = json.loads(t[1])
+			contact_list.append(c)
+		return json.dumps(contact_list)
 
 
 class WXInterface(HelperHandler):
@@ -54,7 +51,8 @@ class WXInterface(HelperHandler):
 
     def post(self):
         body = self.request.body
-        kv = redis.StrictRedis()
+        #kv = redis.StrictRedis()
+        kv = redis.KVClient()
         if body:
                 dom = lxml.etree.fromstring(body)
                 ToUserName = dom.find('ToUserName').text
@@ -65,8 +63,8 @@ class WXInterface(HelperHandler):
                 
                 T = Talk()
                 T_contact_list = T.talk(Content)
-                T_contact_list = json.loads(T_contact_list)
-                contact_list = T_contact_list
+                contact_list = json.loads(T_contact_list)
+
                 
                 if contact_list:
                     contact = choice(contact_list)

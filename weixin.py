@@ -3,7 +3,7 @@
 import os
 import json
 import lxml
-import redis
+import sae.kvdb as redis
 import tornado.web
 
 from helper import HelperHandler
@@ -16,18 +16,18 @@ class Main(HelperHandler):
         
         
 class Weixin(HelperHandler):
-    @tornado.web.authenticated
+    @tornado.web.authenticated	
     def get(self):
-        kv = redis.StrictRedis()
+        #kv = redis.StrictRedis()
+        kv = redis.KVClient()
         contact_list =[]
-        contact_list_all = kv.keys(KT['c']+'*')
-        for t in contact_list_all[0:30]:
-            c = kv.get(t)
-            c = json.loads(c)
-            contact_list.append(c)
-
+        wx = [i for i in kv.get_by_prefix(KT['c'])]
+        for t in wx:
+			c = json.loads(t[1])
+			contact_list.append(c)
+            
         template_values = {}
-        template_values['WX'] = '模板变量全部用大写'
+        template_values['WX'] = wx
         template_values['CONTACT_LIST'] = contact_list
         self.render(os.path.join(os.path.dirname(__file__), 'template','weixin.html'),tpl=template_values)
         
@@ -41,7 +41,8 @@ class CreateContact(HelperHandler):
         contact_name = str(self.get_argument("contactName","ccdjh.marx").encode("UTF-8"))
         contact_content = str(self.get_argument("contactContent","x").encode("UTF-8"))
 
-        kv = redis.StrictRedis()
+        #kv = redis.StrictRedis()
+        kv = redis.KVClient()
         contact_key = str(KT['c']) + contact_name
         contact_value = {'name':contact_name,'content':contact_content,'list':[],}
         contact_value = json.dumps(contact_value)
